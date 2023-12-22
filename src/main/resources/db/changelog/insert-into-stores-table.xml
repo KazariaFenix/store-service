@@ -5,28 +5,28 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="insert-intostore-table" author="Elena">
-        <insert tableName="store">
+        <insert tableName="stores">
             <column name="name" value="Пятерочка"/>
             <column name="description" value="Продукты и товары для дома"/>
             <column name="address" value="Ул. Пушкина д.Колотушкина"/>
             <column name="phone" value="86666666666"/>
         </insert>
 
-        <insert tableName="store">
+        <insert tableName="stores">
             <column name="name" value="Ашан"/>
             <column name="description" value="Все для всего"/>
             <column name="address" value="Ул. Колотушкина д.Пушкина"/>
             <column name="phone" value="89999999999"/>
         </insert>
 
-        <insert tableName="store">
+        <insert tableName="stores">
             <column name="name" value="Рыбин гуд"/>
             <column name="description" value="Рыба и морепродукты"/>
             <column name="address" value="Ул. Морячковая"/>
             <column name="phone" value="84938569345"/>
         </insert>
 
-        <insert tableName="store">
+        <insert tableName="stores">
             <column name="name" value="Чайзенберг"/>
             <column name="description" value="Чай и кофе"/>
             <column name="address" value="Ул. Тяжкая"/>
