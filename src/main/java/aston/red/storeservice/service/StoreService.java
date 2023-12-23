@@ -17,7 +17,8 @@ public class StoreService {
         return repository.findAll();
     }
 
-    public Store getStore(long id) {
-        return repository.findById(id).orElse(null);
+    public Store getAllGoodsByStore(long storeId) {
+        repository.findById(storeId);
+        return null;
     }
 }
