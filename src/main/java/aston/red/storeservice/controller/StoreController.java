@@ -1,9 +1,13 @@
 package aston.red.storeservice.controller;
 
+import aston.red.storeservice.dto.ProductDto;
 import aston.red.storeservice.dto.StoreDto;
+import aston.red.storeservice.dto.StoreToOrderDto;
+import aston.red.storeservice.feign.GoodsFeignClient;
 import aston.red.storeservice.mapper.StoreMapper;
 import aston.red.storeservice.service.StoreService;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,21 +16,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping(path = "/stores", produces = MediaType.APPLICATION_JSON_VALUE)
-@RequiredArgsConstructor
+@RequestMapping(path = "/store", produces = MediaType.APPLICATION_JSON_VALUE)
+@AllArgsConstructor
+@Tag(name = "Store-service", description = "Сервис магазина")
 public class StoreController {
 
     private final StoreService service;
+    private final GoodsFeignClient goodsFeignClient;
+
 
     @GetMapping
     public List<StoreDto> getAll() {
         return StoreMapper.INSTANCE.fromAllStoreToAllDto(service.getAll());
     }
 
-    @GetMapping(path = "/{id}")
-    public StoreDto getById(@PathVariable("id") long storeId) {
-        return StoreMapper.INSTANCE.fromStoreToDto(service.getById(storeId));
+    @GetMapping(path = "/{storeId}")
+    public List<ProductDto> getByIdWithAllProducts(@PathVariable("storeId") long storeId) {
+        return goodsFeignClient.getAllGoodsFromStore(storeId);
+    }
+
+    @GetMapping(path = "/{storeId}/{productId}")
+    public ProductDto getByIdWithProduct(@PathVariable("storeId") long storeId,
+                                         @PathVariable("productId") long productId) {
+        return goodsFeignClient.getGoodFromStore(storeId, productId);
+    }
+
+    @GetMapping(path = "/transfer/{storeId}")
+    public StoreToOrderDto getToOrderService(@PathVariable("storeId") long storeId) {
+        return StoreMapper.INSTANCE.fromStoreToOrderService(service.getById(storeId));
     }
 }
