@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,5 +22,7 @@ public class StoreDto {
     private String address;
 
     private String phoneNumber;
+
+    private List<ProductDto> productDtoList;
 }
 
