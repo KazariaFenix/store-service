@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 // получить адрес у Goods Service
-@FeignClient(value = "goodsServiceFeign", url = "http://localhost:8080/api/goods")
+@FeignClient(value = "goodsServiceFeign", url = "http://localhost:7777/api/goods")
 public interface GoodsFeignClient {
 
     @GetMapping("/{storeId}")
