@@ -41,7 +41,14 @@
             <version>${spring.boot}</version>
         </dependency>
 
-<!--        DATA-->
+<!--        SWAGGER-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <!--        DATA-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -79,7 +86,6 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>${spring.boot.cloud}</version>
         </dependency>
-
 
         <!--        TEST-->
         <dependency>
